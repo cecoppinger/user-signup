@@ -17,3 +17,6 @@ p {
   display: inline;
 }
 
+.error {
+  color: red;
+}

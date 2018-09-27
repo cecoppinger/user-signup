@@ -28,7 +28,9 @@ def welcome():
     
     return render_template("signup.html", username_error=username_error,
                            password_error=password_error,
-                           verify_pw_error=verify_pw_error)
+                           verify_pw_error=verify_pw_error,
+                           username="",
+                           email="")
 
 
   return render_template("welcome.html", name=username)
