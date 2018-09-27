@@ -5,16 +5,16 @@
 <form action='/welcome' method='POST'>
   <label><span>Username:</span>
     <input type="text" name="username" />
-  </label>
+  </label><p>{{username_error}}</p>
   <label><span>Password:</span>
     <input type="password" name="password"/>
-  </label>
+  </label><p>{{password_error}}</p>
   <label><span>Verify Password:</span>
     <input type="password" name="verify-pw" />
-  </label>
+  </label><p>{{verify_pw_error}}</p>
   <label><span>E-mail:</span>
     <input type="text" name="email" />
-  </label>
+  </label><p>{{email_error}}</p>
   <input type="submit" value="Submit Me!"/>
 </form>
 {% endblock %}

@@ -13,3 +13,7 @@ label input {
   margin-left: 120px;
 }
 
+p {
+  display: inline;
+}
+
