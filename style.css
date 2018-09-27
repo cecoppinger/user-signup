@@ -1,0 +1,16 @@
+label {
+  display: block;
+  position: relative;
+  color: red;
+}
+
+label span {
+  font-weight: bold;
+  position: absolute;
+  left: 3px;
+}
+
+label input {
+  margin-left: 120px;
+}
+
