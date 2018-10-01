@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 @app.route('/')
-def index():
+def find():
   return render_template("signup.html")
 
 @app.route('/', methods=['POST'])
@@ -17,6 +17,7 @@ def signup():
   password_error = ""
   verify_pw_error = ""
   email_error = ""
+  email_error_msg = "Not a valid e-mail"
 
   if not username or not password or not verify_pw:
     error_msg = "Please don't leave me empty!"
@@ -55,12 +56,17 @@ def signup():
         elif char == '@' and not at_char:
           at_char = True
         elif char == '.' and dot_char:
-          email_error = "Not a valid e-mail"
+          email_error = email_error_msg
         elif char == '@' and at_char:
-          email_error = "Not a valid e-mail"
+          email_error = email_error_msg
+          
+      if not at_char or not dot_char:
+        email_error = email_error_msg
 
+      if email.find('.') < email.find('@') and not email_error:
+        email_error = email_error_msg
 
-  if username_error or password_error or verify_pw_error:
+  if username_error or password_error or verify_pw_error or email_error:
     return render_template("signup.html", username_error=username_error,
                            password_error=password_error,
                            verify_pw_error=verify_pw_error,
