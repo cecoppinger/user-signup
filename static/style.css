@@ -13,10 +13,12 @@ label input {
   margin-left: 120px;
 }
 
-p {
-  display: inline;
-}
-
 .error {
   color: red;
 }
+
+p {
+  display: inline;
+  margin-left: 5px;
+}
+
