@@ -16,6 +16,7 @@ def signup():
   username_error = ""
   password_error = ""
   verify_pw_error = ""
+  email_error = ""
 
   if not username or not password or not verify_pw:
     error_msg = "Please don't leave me empty!"
@@ -42,12 +43,30 @@ def signup():
     if char == " ":
       password_error = "Passwords should not contain spaces"
 
+  if email:
+    if len(email) < 3 or len(email) > 20:
+      email_error = "Must be between 3 and 20 characters" 
+    elif not email_error:
+      at_char = False
+      dot_char = False
+      for char in email:
+        if char == '.' and not dot_char:
+          dot_char = True
+        elif char == '@' and not at_char:
+          at_char = True
+        elif char == '.' and dot_char:
+          email_error = "Not a valid e-mail"
+        elif char == '@' and at_char:
+          email_error = "Not a valid e-mail"
+
+
   if username_error or password_error or verify_pw_error:
     return render_template("signup.html", username_error=username_error,
                            password_error=password_error,
                            verify_pw_error=verify_pw_error,
-                           username="",
-                           email="")
+                           username=username,
+                           email=email,
+                           email_error=email_error)
   else:
     return redirect('/welcome?name=' + username)
 
