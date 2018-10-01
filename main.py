@@ -7,8 +7,8 @@ app.config['DEBUG'] = True
 def index():
   return render_template("signup.html")
 
-@app.route('/welcome', methods=['POST'])
-def welcome():
+@app.route('/', methods=['POST'])
+def signup():
   username = request.form['username']
   password = request.form['password']
   verify_pw = request.form['verify-pw']
@@ -49,7 +49,11 @@ def welcome():
                            username="",
                            email="")
   else:
-    return render_template("welcome.html", name=username)
+    return redirect('/welcome?name=' + username)
 
+@app.route('/welcome')
+def welcome():
+  username = request.args.get('name')
+  return render_template("welcome.html", name=username)
 
 app.run()
